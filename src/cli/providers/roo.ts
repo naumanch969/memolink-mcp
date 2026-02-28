@@ -18,7 +18,7 @@ export const vscodeRooProvider: ProviderConfig = {
         const configPath = CLINE_MCP_CONFIG[platform];
 
         if (!configPath) {
-            console.error(`❌ Auto-setup for Roo Code is not supported on ${platform}.`);
+            console.error(`Auto-setup for Roo Code is not supported on ${platform}.`);
             process.exit(1);
         }
 

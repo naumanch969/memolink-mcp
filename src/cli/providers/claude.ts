@@ -17,7 +17,7 @@ export const claudeProvider: ProviderConfig = {
         const configPath = CLAUDE_CONFIG_PATHS[platform];
 
         if (!configPath) {
-            console.error(`❌ Auto-setup is not currently supported on ${platform}.`);
+            console.error(`Auto-setup is not currently supported on ${platform}.`);
             console.error(`Please manually configure Claude Desktop with this API Key.`);
             process.exit(1);
         }
