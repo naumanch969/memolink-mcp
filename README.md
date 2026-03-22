@@ -1,4 +1,4 @@
-# Memolink MCP Server 🚀
+# Memolink MCP Server
 
 A [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server that connects your AI assistants (Claude, Cursor, Windsurf, etc.) with your **Memolink** workspace. This integration allows AI agents to read, search, and manage your research notes, memos, and goals directly.
 
@@ -81,4 +81,4 @@ npm run dev
 ```
 
 ---
-Built with ❤️ by [Memolink Team](https://memolink.cloud)
+Built by [Opstin Technologies Team](https://opstintechnologies.com)
