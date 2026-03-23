@@ -1,4 +1,4 @@
-import { ProviderConfig } from '../provider.interface.js';
+import { ProviderConfig } from './provider.interface.js';
 import { antigravityProvider } from './providers/antigravity.js';
 import { claudeProvider } from './providers/claude.js';
 import { cursorProvider } from './providers/cursor.js';

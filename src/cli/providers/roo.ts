@@ -1,6 +1,6 @@
-import fs from 'fs';
-import os from 'os';
-import path from 'path';
+import * as fs from 'fs';
+import * as os from 'os';
+import * as path from 'path';
 import { ProviderConfig } from '../provider.interface.js';
 
 // Most IDEs configured via VS Code use settings.json, sometimes RooCode uses mcp settings config files
