@@ -50,8 +50,8 @@ export const claudeProvider: ProviderConfig = {
 
         fs.writeFileSync(configPath, JSON.stringify(config, null, 2), 'utf8');
 
-        console.log(`✅ Successfully connected Memolink to Claude Desktop!`);
-        console.log(`📂 Config updated at: ${configPath}`);
-        console.log(`\n🔄 Please RESTART Claude Desktop to activate your AI memory layer.`);
+        console.error(`✅ Successfully connected Memolink to Claude Desktop!`);
+        console.error(`📂 Config updated at: ${configPath}`);
+        console.error(`\n🔄 Please RESTART Claude Desktop to activate your AI memory layer.`);
     }
 };

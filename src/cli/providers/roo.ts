@@ -34,8 +34,8 @@ export const vscodeRooProvider: ProviderConfig = {
             }
         } else {
             console.error(`⚠️ Extension config path not found. Do you have Roo Code or Cline installed? Expected path: ${configPath}`);
-            console.log("\nIf installed, please open its MCP console and add:")
-            console.log(`Command: npx\nArgs: -y memolink-mcp\nEnv: MEMOLINK_API_KEY=${apiKey}\nMEMOLINK_API_URL=https://memolink.opstintechnologies.com/api`);
+            console.error("\nIf installed, please open its MCP console and add:")
+            console.error(`Command: npx\nArgs: -y memolink-mcp\nEnv: MEMOLINK_API_KEY=${apiKey}\nMEMOLINK_API_URL=https://memolink.opstintechnologies.com/api`);
             process.exit(1);
         }
 
@@ -50,8 +50,8 @@ export const vscodeRooProvider: ProviderConfig = {
 
         fs.writeFileSync(configPath, JSON.stringify(config, null, 2), 'utf8');
 
-        console.log(`✅ Successfully connected Memolink to VS Code (Roo/Cline)!`);
-        console.log(`📂 Config updated at: ${configPath}`);
-        console.log(`\n🔄 Restart your VS Code window to apply the MCP extension.`);
+        console.error(`✅ Successfully connected Memolink to VS Code (Roo/Cline)!`);
+        console.error(`📂 Config updated at: ${configPath}`);
+        console.error(`\n🔄 Restart your VS Code window to apply the MCP extension.`);
     }
 };

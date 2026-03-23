@@ -13,7 +13,7 @@ export class SearchMemosTool extends BaseTool<any> {
     });
 
     protected async run(args: any) {
-        const response = await memolinkApi.get("/entries/search", args);
+        const response = await memolinkApi.get("/entries", args);
         return response.data?.items || response.data || response;
     }
 }

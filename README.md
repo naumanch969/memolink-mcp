@@ -9,7 +9,7 @@ A [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server that co
 - 🏷️ **Tags & Goals**: Organize search and track your research progress.
 - 🛠️ **Developer Friendly**: Built with TypeScript and the Model Context Protocol SDK.
 
-## 🚀 Quick Setup
+## Quick Setup
 
 Connect Memolink to your favorite AI assistant in seconds using the built-in setup CLI:
 
@@ -43,7 +43,7 @@ The following tools are exposed to your AI assistant:
 | `get_goals` | View your active research goals and progress. |
 | `create_goal` | Define a new objective for your research. |
 
-## ⚙️ Manual Configuration
+## Manual Configuration
 
 If you prefer to configure your environment manually, ensure the following environment variables are set:
 
@@ -67,7 +67,7 @@ If you prefer to configure your environment manually, ensure the following envir
 }
 ```
 
-## 👨‍💻 Development
+## Development
 
 ### Build
 ```bash

@@ -16,7 +16,7 @@ export class CreateMemoTool extends BaseTool<any> {
     });
 
     protected async run(args: any) {
-        const response = await memolinkApi.post("/entries", args);
+        const response = await memolinkApi.post("/capture/entry", args);
         const id = response.data?._id || response._id || 'unknown';
         return `Successfully created memo. ID: ${id}`;
     }

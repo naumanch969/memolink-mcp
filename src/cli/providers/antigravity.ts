@@ -44,9 +44,9 @@ export const antigravityProvider: ProviderConfig = {
 
         fs.writeFileSync(configPath, JSON.stringify(config, null, 2), 'utf8');
 
-        console.log(`✅ Successfully connected Memolink to Antigravity!`);
-        console.log(`📂 Config updated at: ${configPath}`);
-        console.log(`\n🔄 Antigravity will automatically detect the new memory layer.`);
+        console.error(`✅ Successfully connected Memolink to Antigravity!`);
+        console.error(`📂 Config updated at: ${configPath}`);
+        console.error(`\n🔄 Antigravity will automatically detect the new memory layer.`);
     }
 };
 

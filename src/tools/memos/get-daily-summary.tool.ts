@@ -16,7 +16,7 @@ export class GetDailySummaryTool extends BaseTool<any> {
         const nextDay = new Date(targetDate);
         nextDay.setDate(nextDay.getDate() + 1);
 
-        const response = await memolinkApi.get("/entries/search", {
+        const response = await memolinkApi.get("/entries", {
             dateFrom: targetDate.toISOString(),
             dateTo: nextDay.toISOString()
         });
