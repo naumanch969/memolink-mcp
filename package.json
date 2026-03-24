@@ -1,6 +1,6 @@
 {
   "name": "memolink-mcp",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "build/index.js",
   "type": "module",
   "bin": {
@@ -12,7 +12,8 @@
     "dev": "tsx src/index.ts",
     "deploy": "wrangler deploy src/worker.ts",
     "worker:dev": "wrangler dev src/worker.ts",
-    "prepare": "husky"
+    "prepare": "husky",
+    "release": "npm run build && npm publish"
 
   },
   "lint-staged": {
