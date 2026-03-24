@@ -10,7 +10,10 @@
     "build": "tsc",
     "start": "node build/index.js",
     "dev": "tsx src/index.ts",
+    "deploy": "wrangler deploy src/worker.ts",
+    "worker:dev": "wrangler dev src/worker.ts",
     "prepare": "husky"
+
   },
   "lint-staged": {
     "*.ts": "tsc --noEmit"
@@ -23,6 +26,7 @@
     "@modelcontextprotocol/sdk": "^1.27.1",
     "axios": "^1.13.6",
     "dotenv": "^17.3.1",
+    "hono": "^4.12.9",
     "zod": "^3.23.8",
     "zod-to-json-schema": "^3.25.1"
   },
@@ -33,6 +37,7 @@
     "husky": "^9.1.7",
     "lint-staged": "^16.4.0",
     "tsx": "^4.21.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "wrangler": "^4.76.0"
   }
 }

@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { memolinkApi } from "../../api/memolink-client.js";
 import { BaseTool } from "../../core/base-tool.js";
 
 export class CreateMemoTool extends BaseTool<any> {
@@ -16,8 +15,9 @@ export class CreateMemoTool extends BaseTool<any> {
     });
 
     protected async run(args: any) {
-        const response = await memolinkApi.post("/capture/entry", args);
+        const response = await this.apiClient.post("/capture/entry", args);
         const id = response.data?._id || response._id || 'unknown';
         return `Successfully created memo. ID: ${id}`;
     }
 }
+

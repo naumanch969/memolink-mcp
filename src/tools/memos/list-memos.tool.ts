@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { memolinkApi } from "../../api/client.js";
 import { BaseTool } from "../../core/base-tool.js";
 
 export class ListMemosTool extends BaseTool<any> {
@@ -14,7 +13,8 @@ export class ListMemosTool extends BaseTool<any> {
     });
 
     protected async run(args: { page: number; limit: number; sort: string }) {
-        const response = await memolinkApi.get("/entries", { params: args });
+        const response = await this.apiClient.get("/entries", args);
         return response.data;
     }
 }
+

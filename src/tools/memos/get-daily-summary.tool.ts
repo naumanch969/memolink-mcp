@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { memolinkApi } from "../../api/memolink-client.js";
 import { BaseTool } from "../../core/base-tool.js";
 
 export class GetDailySummaryTool extends BaseTool<any> {
@@ -16,7 +15,7 @@ export class GetDailySummaryTool extends BaseTool<any> {
         const nextDay = new Date(targetDate);
         nextDay.setDate(nextDay.getDate() + 1);
 
-        const response = await memolinkApi.get("/entries", {
+        const response = await this.apiClient.get("/entries", {
             dateFrom: targetDate.toISOString(),
             dateTo: nextDay.toISOString()
         });

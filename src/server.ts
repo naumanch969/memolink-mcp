@@ -1,6 +1,7 @@
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { CallToolRequestSchema, ListToolsRequestSchema } from "@modelcontextprotocol/sdk/types.js";
 import { ToolRegistry } from "./core/tool-registry.js";
+import { MemolinkClient } from "./api/memolink-client.js";
 import {
     CreateGoalTool,
     CreateMemoTool,
@@ -9,10 +10,13 @@ import {
     GetTagsTool,
     ReadMemoTool,
     SearchMemosTool,
-    UpdateMemoTool
+    UpdateMemoTool,
+    ListMemosTool,
+    DeleteMemoTool
 } from "./tools/index.js";
 
-export function createServer(): Server {
+
+export function createServer(apiClient: MemolinkClient = new MemolinkClient()): Server {
     const server = new Server(
         { name: "memolink-mcp", version: "1.0.0" },
         { capabilities: { tools: {} } }
@@ -22,15 +26,18 @@ export function createServer(): Server {
 
     // Register all tools centrally
     const tools = [
-        new CreateMemoTool(),
-        new SearchMemosTool(),
-        new GetDailySummaryTool(),
-        new ReadMemoTool(),
-        new UpdateMemoTool(),
-        new GetTagsTool(),
-        new GetGoalsTool(),
-        new CreateGoalTool()
+        new CreateMemoTool(apiClient),
+        new SearchMemosTool(apiClient),
+        new GetDailySummaryTool(apiClient),
+        new ReadMemoTool(apiClient),
+        new UpdateMemoTool(apiClient),
+        new GetTagsTool(apiClient),
+        new GetGoalsTool(apiClient),
+        new CreateGoalTool(apiClient),
+        new ListMemosTool(apiClient),
+        new DeleteMemoTool(apiClient)
     ];
+
 
     tools.forEach(t => registry.register(t));
 
@@ -54,3 +61,4 @@ export function createServer(): Server {
 
     return server;
 }
+

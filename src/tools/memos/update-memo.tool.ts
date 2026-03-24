@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { memolinkApi } from "../../api/memolink-client.js";
 import { BaseTool } from "../../core/base-tool.js";
 
 export class UpdateMemoTool extends BaseTool<any> {
@@ -18,7 +17,7 @@ export class UpdateMemoTool extends BaseTool<any> {
 
     protected async run(args: any) {
         const { id, ...updateData } = args;
-        await memolinkApi.put(`/entries/${id}`, updateData);
+        await this.apiClient.put(`/entries/${id}`, updateData);
         return `Successfully updated memo ${id}`;
     }
 }

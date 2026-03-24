@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { memolinkApi } from "../../api/client.js";
 import { BaseTool } from "../../core/base-tool.js";
 
 export class DeleteMemoTool extends BaseTool<any> {
@@ -13,7 +12,8 @@ export class DeleteMemoTool extends BaseTool<any> {
     });
 
     protected async run(args: { id: string }) {
-        await memolinkApi.delete(`/entries/${args.id}`);
+        await this.apiClient.delete(`/entries/${args.id}`);
         return `Successfully deleted memo ${args.id}`;
     }
 }
+

@@ -4,6 +4,9 @@ export * from './memos/get-daily-summary.tool.js';
 export * from './memos/read-memo.tool.js';
 export * from './memos/search-memos.tool.js';
 export * from './memos/update-memo.tool.js';
+export * from './memos/list-memos.tool.js';
+export * from './memos/delete-memo.tool.js';
+
 
 export * from './tags/get-tags.tool.js';
 

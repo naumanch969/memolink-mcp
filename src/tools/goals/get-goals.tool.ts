@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { memolinkApi } from "../../api/memolink-client.js";
 import { BaseTool } from "../../core/base-tool.js";
 
 export class GetGoalsTool extends BaseTool<any> {
@@ -11,7 +10,7 @@ export class GetGoalsTool extends BaseTool<any> {
     });
 
     protected async run(args: any) {
-        const response = await memolinkApi.get("/goals", args);
+        const response = await this.apiClient.get("/goals", args);
         return response.data?.items || response.data || response;
     }
 }

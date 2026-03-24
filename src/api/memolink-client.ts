@@ -1,45 +1,74 @@
-import axios, { AxiosInstance } from "axios";
-
 export class MemolinkClient {
-    private api: AxiosInstance;
+    private apiKey: string;
+    private baseUrl: string;
 
-    constructor() {
-        const API_URL = process.env.MEMOLINK_API_URL || "http://localhost:5001/api";
-        const API_KEY = process.env.MEMOLINK_API_KEY;
+    constructor(apiKey?: string, apiUrl?: string) {
+        // Workers don't have process.env globally, they use bindings
+        // But for local CLI it might still use it
+        const API_KEY = apiKey || (typeof process !== 'undefined' ? process.env.MEMOLINK_API_KEY : '');
+        const API_URL = apiUrl || (typeof process !== 'undefined' ? process.env.MEMOLINK_API_URL : "http://localhost:5001/api");
 
-        if (!API_KEY && process.argv[2] !== "setup") {
-            console.error("MEMOLINK_API_KEY environment variable is required.");
-            process.exit(1);
+        if (!API_KEY && typeof process !== 'undefined' && process.argv && process.argv[2] !== "setup") {
+            console.error("MEMOLINK_API_KEY is required.");
         }
 
-        this.api = axios.create({
-            baseURL: API_URL,
-            headers: {
-                Authorization: `Bearer ${API_KEY}`,
-                "Content-Type": "application/json",
-            },
+        this.apiKey = API_KEY || '';
+        this.baseUrl = API_URL || '';
+    }
+
+    private async request<T = any>(path: string, options: RequestInit = {}): Promise<T> {
+        const url = `${this.baseUrl}${path.startsWith('/') ? path : `/${path}`}`;
+        const headers = {
+            'Authorization': `Bearer ${this.apiKey}`,
+            'Content-Type': 'application/json',
+            ...(options.headers || {})
+        };
+
+        const response = await fetch(url, {
+            ...options,
+            headers
         });
+
+        if (!response.ok) {
+            const error = await response.text().catch(() => 'Unknown error');
+            throw new Error(`API Error: ${response.status} - ${error}`);
+        }
+
+        // Return empty object for empty responses (like 204 No Content)
+        if (response.status === 204) {
+             return {} as T;
+        }
+
+        return await response.json() as T;
     }
 
     async get<T = any>(path: string, params?: any): Promise<T> {
-        const response = await this.api.get(path, { params });
-        return response.data;
+        let urlPath = path;
+        if (params) {
+            const query = new URLSearchParams();
+            Object.entries(params).forEach(([key, value]) => {
+                if (value !== undefined) query.append(key, String(value));
+            });
+            urlPath += `?${query.toString()}`;
+        }
+        return this.request<T>(urlPath, { method: 'GET' });
     }
 
     async post<T = any>(path: string, data?: any): Promise<T> {
-        const response = await this.api.post(path, data);
-        return response.data;
+        return this.request<T>(path, {
+            method: 'POST',
+            body: JSON.stringify(data)
+        });
     }
 
     async put<T = any>(path: string, data?: any): Promise<T> {
-        const response = await this.api.put(path, data);
-        return response.data;
+        return this.request<T>(path, {
+            method: 'PUT',
+            body: JSON.stringify(data)
+        });
     }
 
     async delete<T = any>(path: string): Promise<T> {
-        const response = await this.api.delete(path);
-        return response.data;
+        return this.request<T>(path, { method: 'DELETE' });
     }
 }
-
-export const memolinkApi = new MemolinkClient();

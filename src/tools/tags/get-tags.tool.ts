@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { memolinkApi } from "../../api/memolink-client.js";
 import { BaseTool } from "../../core/base-tool.js";
 
 export class GetTagsTool extends BaseTool<any> {
@@ -9,7 +8,7 @@ export class GetTagsTool extends BaseTool<any> {
     schema = z.object({});
 
     protected async run() {
-        const response = await memolinkApi.get("/tags");
+        const response = await this.apiClient.get("/tags");
         return response.data || response;
     }
 }

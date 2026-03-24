@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { memolinkApi } from "../../api/memolink-client.js";
 import { BaseTool } from "../../core/base-tool.js";
 
 export class CreateGoalTool extends BaseTool<any> {
@@ -17,7 +16,7 @@ export class CreateGoalTool extends BaseTool<any> {
     });
 
     protected async run(args: any) {
-        const response = await memolinkApi.post("/goals", args);
+        const response = await this.apiClient.post("/goals", args);
         const id = response.data?._id || response._id || 'unknown';
         return `Successfully created goal. ID: ${id}`;
     }

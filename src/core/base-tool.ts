@@ -7,10 +7,15 @@ export interface ITool {
     execute(args: any): Promise<{ content: Array<{ type: string; text: string }>, isError?: boolean }>;
 }
 
+import { MemolinkClient } from "../api/memolink-client.js";
+
 export abstract class BaseTool<T> implements ITool {
     abstract readonly name: string;
     abstract readonly description: string;
     abstract readonly schema: z.ZodType<any, any, any>;
+
+    constructor(protected readonly apiClient: MemolinkClient) {}
+
 
     get definition(): Tool {
         const jsonSchema = zodToJsonSchema(this.schema as any) as any;
