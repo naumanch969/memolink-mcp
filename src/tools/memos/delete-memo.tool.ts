@@ -6,6 +6,8 @@ export class DeleteMemoTool extends BaseTool<any> {
     description = "Permanently delete a memo from the Memolink workspace by its ID. " +
         "Call this ONLY when the user explicitly asks to remove, delete, or " +
         "destroy a specific item of information.";
+    readOnlyHint = false;
+    destructiveHint = true;
 
     schema = z.object({
         id: z.string().describe("The ID of the memo to delete."),

@@ -4,6 +4,8 @@ import { BaseTool } from "../../core/base-tool.js";
 export class UpdateMemoTool extends BaseTool<any> {
     name = "update_memo";
     description = "Update an existing memo. Use this to append or correct facts about the user for a memory you already know the ID of.";
+    readOnlyHint = false;
+    destructiveHint = true;
 
     schema = z.object({
         id: z.string().describe("The ID of the memo to update."),

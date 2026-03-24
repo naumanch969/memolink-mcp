@@ -114,7 +114,34 @@ If you prefer to configure your environment manually, ensure the following envir
 }
 ```
 
-## Development
+## 🚀 Usage Examples
+
+### 1. Research Journaling
+**User:** "Create a new memo about my findings on the impact of GPT-5 on the developer market from my research today. Tag it as 'research' and 'ai-trends'."
+**AI Goal:** Use `create_memo` with content and tags.
+
+### 2. Context Retrieval
+**User:** "What was my anxiety level last time I talked about the project launch in my memos?"
+**AI Goal:** Use `search_memos` with `q: "project launch"` then read the related `mood` fields.
+
+### 3. Goal Alignment
+**User:** "Check my current research goals and see if I've reached the 'market analysis' milestone."
+**AI Goal:** Use `get_goals` and `get_user_tags` to correlate progress.
+
+## 🔒 Privacy & Security
+
+Memolink MCP acts as a bridge between your AI assistant and your private Memolink workspace. 
+- **Data Ownership**: Your notes and data remain exclusively on Memolink servers. 
+- **Encryption**: All communication is performed over HTTPS.
+- **Privacy Policy**: View our full privacy policy at [https://memo.opstintechnologies.com/privacy/mcp](https://memo.opstintechnologies.com/privacy/mcp).
+
+## 🆘 Support & Community
+
+- **GitHub Issues**: Report bugs or request features on our [Issue Tracker](https://github.com/Opstin-Technologies/memolink-mcp/issues).
+- **Email Support**: Contact us at `support@opstintechnologies.com`.
+- **Website**: [https://opstintechnologies.com](https://opstintechnologies.com).
+
+## 🛠️ Development
 
 ### Build
 ```bash

@@ -4,6 +4,8 @@ import { BaseTool } from "../../core/base-tool.js";
 export class GetTagsTool extends BaseTool<any> {
     name = "get_user_tags";
     description = "Fetches all existing tags used by the user. Run this to know what categories already exist before saving new memos or goals.";
+    readOnlyHint = true;
+    destructiveHint = false;
 
     schema = z.object({});
 

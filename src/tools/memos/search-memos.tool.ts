@@ -3,7 +3,9 @@ import { BaseTool } from "../../core/base-tool.js";
 
 export class SearchMemosTool extends BaseTool<any> {
     name = "search_memos";
-    description = "Searches past memos and journal entries to retrieve context about the user. Very useful for fetching previous reflections, facts, or projects.";
+    description = "Searches through the user's previously created memos using keywords or date ranges. Essential for recalling context or past thoughts.";
+    readOnlyHint = true;
+    destructiveHint = false;
 
     schema = z.object({
         q: z.string().optional().describe("Search query string."),

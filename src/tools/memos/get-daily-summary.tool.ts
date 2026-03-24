@@ -4,6 +4,8 @@ import { BaseTool } from "../../core/base-tool.js";
 export class GetDailySummaryTool extends BaseTool<any> {
     name = "get_daily_summary";
     description = "Retrieves the user's journal entries from a specific day to provide context about their current state or activities.";
+    readOnlyHint = true;
+    destructiveHint = false;
 
     schema = z.object({
         date: z.string().optional().describe("ISO Date string for the summary. Defaults to today."),

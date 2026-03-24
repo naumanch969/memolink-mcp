@@ -6,6 +6,8 @@ export class ListMemosTool extends BaseTool<any> {
     description = "List memos and research notes with pagination. " +
         "Call this when the user wants to browse their library of notes, or when " +
         "searching isn't yielding the desired specific result.";
+    readOnlyHint = true;
+    destructiveHint = false;
     schema = z.object({
         page: z.number().optional().default(1).describe("The page number to retrieve."),
         limit: z.number().optional().default(10).describe("Number of memos per page."),

@@ -18,10 +18,18 @@
   "lint-staged": {
     "*.ts": "tsc --noEmit"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "memolink",
+    "research",
+    "notes",
+    "journaling",
+    "ai-memory"
+  ],
+  "author": "Opstin Technologies <support@opstintechnologies.com>",
   "license": "ISC",
-  "description": "Memolink MCP Server",
+  "description": "Connect your AI with Memolink to manage research notes, memories, and goals using the Model Context Protocol.",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.27.1",
     "axios": "^1.13.6",

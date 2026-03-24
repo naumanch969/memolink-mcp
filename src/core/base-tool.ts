@@ -13,6 +13,10 @@ export abstract class BaseTool<T> implements ITool {
     abstract readonly name: string;
     abstract readonly description: string;
     abstract readonly schema: z.ZodType<any, any, any>;
+    
+    // Safety annotations for Anthropic compliance
+    readonly readOnlyHint: boolean = false;
+    readonly destructiveHint: boolean = false;
 
     constructor(protected readonly apiClient: MemolinkClient) {}
 
@@ -27,6 +31,10 @@ export abstract class BaseTool<T> implements ITool {
                 properties: jsonSchema.properties || {},
                 required: jsonSchema.required || [],
             },
+            // @ts-ignore - Support Anthropic safety extensions
+            readOnlyHint: this.readOnlyHint,
+            // @ts-ignore
+            destructiveHint: this.destructiveHint
         };
     }
 

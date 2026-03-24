@@ -4,6 +4,8 @@ import { BaseTool } from "../../core/base-tool.js";
 export class GetGoalsTool extends BaseTool<any> {
     name = "get_goals";
     description = "Fetches current, active, completed, or archived goals the user is working towards in their life or projects.";
+    readOnlyHint = true;
+    destructiveHint = false;
 
     schema = z.object({
         status: z.enum(['active', 'completed', 'failed', 'archived', 'all']).optional().describe("Filter goals by status. Defaults to active."),

@@ -4,6 +4,8 @@ import { BaseTool } from "../../core/base-tool.js";
 export class CreateGoalTool extends BaseTool<any> {
     name = "create_goal";
     description = "Creates a new goal for the user to track in Memolink.";
+    readOnlyHint = false;
+    destructiveHint = false;
 
     schema = z.object({
         title: z.string().describe("The title of the goal."),
