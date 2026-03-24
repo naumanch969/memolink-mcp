@@ -24,6 +24,16 @@ npx memolink-mcp setup <provider> <MEMOLINK_API_KEY>
 - `gemini` - Google Gemini / AI Studio
 - `roo-cline` - VS Code Roo-Cline extension
 - `antigravity` - Antigravity AI Assistant
+- `mcp-cli` - Official MCP CLI for debugging
+
+### 🔐 OAuth & Official AI Integration
+
+If you are using the official Claude.ai or Cursor integration, the following redirect URIs must be allowlisted in your Memolink server settings (or configured via `npm run mcp-setup` on the server):
+
+- `http://localhost:6274/oauth/callback`
+- `http://localhost:6274/oauth/callback/debug`
+- `https://claude.ai/api/mcp/auth_callback`
+- `https://claude.com/api/mcp/auth_callback`
 
 > [!IMPORTANT]
 > Your Memolink API Key must start with `mclk_`. You can find this in your Memolink settings.
