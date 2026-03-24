@@ -95,7 +95,7 @@ The following tools are exposed to your AI assistant:
 If you prefer to configure your environment manually, ensure the following environment variables are set:
 
 - `MEMOLINK_API_KEY`: Your private Memolink API Key.
-- `MEMOLINK_API_URL`: (Optional) Defaults to `https://memolink.opstintechnologies.com/api`.
+- `MEMOLINK_API_URL`: (Optional) Defaults to `https://api.memo.opstintechnologies.com/api`.
 
 ### Example for `claude_desktop_config.json`:
 
@@ -107,7 +107,7 @@ If you prefer to configure your environment manually, ensure the following envir
       "args": ["-y", "memolink-mcp"],
       "env": {
         "MEMOLINK_API_KEY": "mclk_your_secret_key",
-        "MEMOLINK_API_URL": "https://memolink.opstintechnologies.com/api"
+        "MEMOLINK_API_URL": "https://api.memo.opstintechnologies.com/api"
       }
     }
   }

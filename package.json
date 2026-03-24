@@ -4,7 +4,7 @@
   "main": "build/index.js",
   "type": "module",
   "bin": {
-    "memolink-mcp": "./build/index.js"
+    "memolink-mcp": "build/index.js"
   },
   "scripts": {
     "build": "tsc",
@@ -14,7 +14,6 @@
     "worker:dev": "wrangler dev src/worker.ts",
     "prepare": "husky",
     "release": "npm run build && npm publish"
-
   },
   "lint-staged": {
     "*.ts": "tsc --noEmit"

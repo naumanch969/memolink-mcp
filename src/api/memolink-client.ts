@@ -1,3 +1,5 @@
+import { MEMOLINK_API_URL } from '../core/constants.js';
+
 export class MemolinkClient {
     private apiKey: string;
     private baseUrl: string;
@@ -6,7 +8,7 @@ export class MemolinkClient {
         // Workers don't have process.env globally, they use bindings
         // But for local CLI it might still use it
         const API_KEY = apiKey || (typeof process !== 'undefined' ? process.env.MEMOLINK_API_KEY : '');
-        const API_URL = apiUrl || (typeof process !== 'undefined' ? process.env.MEMOLINK_API_URL : "http://localhost:5001/api");
+        const API_URL = apiUrl || (typeof process !== 'undefined' ? process.env.MEMOLINK_API_URL : MEMOLINK_API_URL);
 
         if (!API_KEY && typeof process !== 'undefined' && process.argv && process.argv[2] !== "setup") {
             console.error("MEMOLINK_API_KEY is required.");

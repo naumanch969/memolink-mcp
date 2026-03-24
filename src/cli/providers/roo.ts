@@ -2,55 +2,54 @@ import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
 import { ProviderConfig } from '../provider.interface.js';
+import { getMemolinkMcpConfig } from '../../core/constants.js';
+import { updateMcpConfig } from '../setup-helper.js';
 
-// Most IDEs configured via VS Code use settings.json, sometimes RooCode uses mcp settings config files
-const CLINE_MCP_CONFIG = {
-    darwin: path.join(os.homedir(), "Library/Application Support/Code/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json"),
-    win32: path.join(process.env.APPDATA || "", "Code/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json"),
-    linux: path.join(os.homedir(), ".config/Code/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json")
-};
+const ROO_MCP_CONFIGS = [
+    {
+        name: 'Roo Code',
+        paths: {
+            darwin: path.join(os.homedir(), "Library/Application Support/Code/User/globalStorage/roovet.roo-code/settings/roo_mcp_settings.json"),
+            win32: path.join(process.env.APPDATA || "", "Code/User/globalStorage/roovet.roo-code/settings/roo_mcp_settings.json"),
+            linux: path.join(os.homedir(), ".config/Code/User/globalStorage/roovet.roo-code/settings/roo_mcp_settings.json")
+        }
+    },
+    {
+        name: 'Cline',
+        paths: {
+            darwin: path.join(os.homedir(), "Library/Application Support/Code/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json"),
+            win32: path.join(process.env.APPDATA || "", "Code/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json"),
+            linux: path.join(os.homedir(), ".config/Code/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json")
+        }
+    }
+];
 
 export const vscodeRooProvider: ProviderConfig = {
     name: 'roo',
     description: 'Installs Memolink inside Roo Code / Cline extensions in VS Code.',
     async setup(apiKey: string) {
-        const platform = os.platform() as keyof typeof CLINE_MCP_CONFIG;
-        const configPath = CLINE_MCP_CONFIG[platform];
+        const platform = os.platform() as 'darwin' | 'win32' | 'linux';
+        let configPath = '';
+        let foundApp = '';
 
+        for (const config of ROO_MCP_CONFIGS) {
+            const p = config.paths[platform];
+            if (p && fs.existsSync(p)) {
+                configPath = p;
+                foundApp = config.name;
+                break;
+            }
+        }
+
+        // Default to Roo Code path for creation if neither exists
         if (!configPath) {
-            console.error(`Auto-setup for Roo Code is not supported on ${platform}.`);
-            process.exit(1);
+            configPath = ROO_MCP_CONFIGS[0].paths[platform];
+            foundApp = ROO_MCP_CONFIGS[0].name;
         }
 
-        let config: any = { mcpServers: {} };
+        updateMcpConfig(configPath, 'memolink', getMemolinkMcpConfig(apiKey));
 
-        if (fs.existsSync(configPath)) {
-            try {
-                const raw = fs.readFileSync(configPath, 'utf8');
-                config = JSON.parse(raw);
-                if (!config.mcpServers) config.mcpServers = {};
-            } catch (err) {
-                console.error(`⚠️ Found existing Roo Code config but couldn't parse it: ${err}`);
-            }
-        } else {
-            console.error(`⚠️ Extension config path not found. Do you have Roo Code or Cline installed? Expected path: ${configPath}`);
-            console.error("\nIf installed, please open its MCP console and add:")
-            console.error(`Command: npx\nArgs: -y memolink-mcp\nEnv: MEMOLINK_API_KEY=${apiKey}\nMEMOLINK_API_URL=https://memolink.opstintechnologies.com/api`);
-            process.exit(1);
-        }
-
-        config.mcpServers.memolink = {
-            command: "npx",
-            args: ["-y", "memolink-mcp"],
-            env: {
-                MEMOLINK_API_KEY: apiKey,
-                MEMOLINK_API_URL: "https://memolink.opstintechnologies.com/api"
-            }
-        };
-
-        fs.writeFileSync(configPath, JSON.stringify(config, null, 2), 'utf8');
-
-        console.error(`✅ Successfully connected Memolink to VS Code (Roo/Cline)!`);
+        console.error(`✅ Successfully connected Memolink to VS Code (${foundApp})!`);
         console.error(`📂 Config updated at: ${configPath}`);
         console.error(`\n🔄 Restart your VS Code window to apply the MCP extension.`);
     }

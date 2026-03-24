@@ -1,4 +1,5 @@
 import { ProviderConfig } from '../provider.interface.js';
+import { MEMOLINK_API_URL } from '../../core/constants.js';
 
 export const geminiProvider: ProviderConfig = {
     name: 'gemini',
@@ -9,7 +10,7 @@ export const geminiProvider: ProviderConfig = {
 
         console.error(`When defining your tools or using a Google-compatible MCP adapter, provide these variables to the runtime:`);
         console.error(`   - MEMOLINK_API_KEY : ${apiKey}`);
-        console.error(`   - MEMOLINK_API_URL : https://memolink.opstintechnologies.com/api\n`);
+        console.error(`   - MEMOLINK_API_URL : ${MEMOLINK_API_URL}\n`);
         console.error(`Command to run the server:`);
         console.error(`npx -y memolink-mcp`);
     }

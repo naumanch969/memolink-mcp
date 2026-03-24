@@ -1,19 +1,27 @@
+import * as os from 'os';
+import * as path from 'path';
 import { ProviderConfig } from '../provider.interface.js';
+import { getMemolinkMcpConfig } from '../../core/constants.js';
+import { updateMcpConfig } from '../setup-helper.js';
+
+const WINDSURF_CONFIG_PATHS = {
+    darwin: path.join(os.homedir(), ".codeium/windsurf/mcp_config.json"),
+    win32: path.join(os.homedir(), ".codeium/windsurf/mcp_config.json"),
+    linux: path.join(os.homedir(), ".codeium/windsurf/mcp_config.json")
+};
 
 export const windsurfProvider: ProviderConfig = {
     name: 'windsurf',
-    description: 'Provides instructions for using Memolink with Windsurf IDE.',
+    description: 'Installs Memolink inside Windsurf IDE via its config file.',
     async setup(apiKey: string) {
-        console.error(`✅ Ready to connect Memolink to Windsurf!`);
-        console.error(`Windsurf handles MCP servers via its central configuration or UI.\n`);
+        const platform = os.platform() as 'darwin' | 'win32' | 'linux';
+        const configPath = WINDSURF_CONFIG_PATHS[platform];
 
-        console.error(`1. Open Windsurf Settings`);
-        console.error(`2. Navigate to AI > Context > Custom Tools / MCP`);
-        console.error(`3. Add a new MCP server`);
-        console.error(`4. Command: "npx", Args: ["-y", "memolink-mcp"]`);
-        console.error(`5. Provide environment variables:`);
-        console.error(`   - MEMOLINK_API_KEY : ${apiKey}`);
-        console.error(`   - MEMOLINK_API_URL : https://memolink.opstintechnologies.com/api\n`);
-        console.error(`Click "Add/Save" to test the connection.`);
+        console.error(`✅ Ready to connect Memolink to Windsurf!`);
+
+        updateMcpConfig(configPath, 'memolink', getMemolinkMcpConfig(apiKey));
+
+        console.error(`✅ Successfully connected Memolink to Windsurf!`);
+        console.error(`📂 Config updated at: ${configPath}`);
     }
 };
