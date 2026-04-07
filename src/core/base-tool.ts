@@ -7,18 +7,18 @@ export interface ITool {
     execute(args: any): Promise<{ content: Array<{ type: string; text: string }>, isError?: boolean }>;
 }
 
-import { MemolinkClient } from "../api/memolink-client.js";
+import { BrinnClient } from "../api/brinn-client.js";
 
 export abstract class BaseTool<T> implements ITool {
     abstract readonly name: string;
     abstract readonly description: string;
     abstract readonly schema: z.ZodType<any, any, any>;
-    
+
     // Safety annotations for Anthropic compliance
     readonly readOnlyHint: boolean = false;
     readonly destructiveHint: boolean = false;
 
-    constructor(protected readonly apiClient: MemolinkClient) {}
+    constructor(protected readonly apiClient: BrinnClient) { }
 
 
     get definition(): Tool {

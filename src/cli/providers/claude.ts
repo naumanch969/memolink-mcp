@@ -1,7 +1,7 @@
 import * as os from 'os';
 import * as path from 'path';
 import { ProviderConfig } from '../provider.interface.js';
-import { getMemolinkMcpConfig } from '../../core/constants.js';
+import { getBrinnMcpConfig } from '../../core/constants.js';
 import { updateMcpConfig } from '../setup-helper.js';
 
 const CLAUDE_CONFIG_PATHS = {
@@ -12,7 +12,7 @@ const CLAUDE_CONFIG_PATHS = {
 
 export const claudeProvider: ProviderConfig = {
     name: 'claude',
-    description: 'Installs Memolink inside Claude Desktop (macOS/Windows/Linux).',
+    description: 'Installs Brinn inside Claude Desktop (macOS/Windows/Linux).',
     async setup(apiKey: string) {
         const platform = os.platform() as keyof typeof CLAUDE_CONFIG_PATHS;
         const configPath = CLAUDE_CONFIG_PATHS[platform];
@@ -22,9 +22,9 @@ export const claudeProvider: ProviderConfig = {
             process.exit(1);
         }
 
-        updateMcpConfig(configPath, 'memolink', getMemolinkMcpConfig(apiKey));
+        updateMcpConfig(configPath, 'brinn', getBrinnMcpConfig(apiKey));
 
-        console.error(`✅ Successfully connected Memolink to Claude Desktop!`);
+        console.error(`✅ Successfully connected Brinn to Claude Desktop!`);
         console.error(`📂 Config updated at: ${configPath}`);
         console.error(`\n🔄 Restart your Claude Desktop app to apply the new memory layer.`);
     }

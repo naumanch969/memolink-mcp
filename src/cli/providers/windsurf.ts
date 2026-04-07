@@ -1,7 +1,7 @@
 import * as os from 'os';
 import * as path from 'path';
 import { ProviderConfig } from '../provider.interface.js';
-import { getMemolinkMcpConfig } from '../../core/constants.js';
+import { getBrinnMcpConfig } from '../../core/constants.js';
 import { updateMcpConfig } from '../setup-helper.js';
 
 const WINDSURF_CONFIG_PATHS = {
@@ -12,16 +12,16 @@ const WINDSURF_CONFIG_PATHS = {
 
 export const windsurfProvider: ProviderConfig = {
     name: 'windsurf',
-    description: 'Installs Memolink inside Windsurf IDE via its config file.',
+    description: 'Installs Brinn inside Windsurf IDE via its config file.',
     async setup(apiKey: string) {
         const platform = os.platform() as 'darwin' | 'win32' | 'linux';
         const configPath = WINDSURF_CONFIG_PATHS[platform];
 
-        console.error(`✅ Ready to connect Memolink to Windsurf!`);
+        console.error(`✅ Ready to connect Brinn to Windsurf!`);
 
-        updateMcpConfig(configPath, 'memolink', getMemolinkMcpConfig(apiKey));
+        updateMcpConfig(configPath, 'brinn', getBrinnMcpConfig(apiKey));
 
-        console.error(`✅ Successfully connected Memolink to Windsurf!`);
+        console.error(`✅ Successfully connected Brinn to Windsurf!`);
         console.error(`📂 Config updated at: ${configPath}`);
     }
 };

@@ -7,7 +7,7 @@ async function main() {
     const args = process.argv.slice(2);
 
     // CLI Setup Mode Interface
-    // Example: npx memolink-mcp setup claude mclk_SECRET
+    // Example: npx brinn-mcp setup claude mclk_SECRET
     if (args[0] === "setup") {
         await handleSetup(args.slice(1));
         return;
@@ -18,7 +18,7 @@ async function main() {
     const transport = new StdioServerTransport();
 
     await server.connect(transport);
-    console.error("🚀 Memolink MCP Server running and listening for AI tools on stdio...");
+    console.error("🚀 Brinn MCP Server running and listening for AI tools on stdio...");
 }
 
 main().catch((error) => {

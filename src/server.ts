@@ -1,24 +1,13 @@
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { CallToolRequestSchema, ListToolsRequestSchema } from "@modelcontextprotocol/sdk/types.js";
 import { ToolRegistry } from "./core/tool-registry.js";
-import { MemolinkClient } from "./api/memolink-client.js";
-import {
-    CreateGoalTool,
-    CreateMemoTool,
-    GetDailySummaryTool,
-    GetGoalsTool,
-    GetTagsTool,
-    ReadMemoTool,
-    SearchMemosTool,
-    UpdateMemoTool,
-    ListMemosTool,
-    DeleteMemoTool
-} from "./tools/index.js";
+import { BrinnClient } from "./api/brinn-client.js";
+import { CreateGoalTool, CreateMemoTool, GetDailySummaryTool, GetGoalsTool, GetTagsTool, ReadMemoTool, SearchMemosTool, UpdateMemoTool, ListMemosTool, DeleteMemoTool } from "./tools/index.js";
 
 
-export function createServer(apiClient: MemolinkClient = new MemolinkClient()): Server {
+export function createServer(apiClient: BrinnClient = new BrinnClient()): Server {
     const server = new Server(
-        { name: "memolink-mcp", version: "1.0.0" },
+        { name: "brinn-mcp", version: "1.0.0" },
         { capabilities: { tools: {} } }
     );
 

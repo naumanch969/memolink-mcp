@@ -1,10 +1,10 @@
 {
-  "name": "memolink-mcp",
+  "name": "brinn-mcp",
   "version": "1.0.3",
   "main": "build/index.js",
   "type": "module",
   "bin": {
-    "memolink-mcp": "build/index.js"
+    "brinn-mcp": "build/index.js"
   },
   "scripts": {
     "build": "tsc",
@@ -21,7 +21,7 @@
   "keywords": [
     "mcp",
     "model-context-protocol",
-    "memolink",
+    "brinn",
     "research",
     "notes",
     "journaling",
@@ -29,7 +29,7 @@
   ],
   "author": "Opstin Technologies <support@opstintechnologies.com>",
   "license": "ISC",
-  "description": "Connect your AI with Memolink to manage research notes, memories, and goals using the Model Context Protocol.",
+  "description": "Connect your AI with Brinn to manage research notes, memories, and goals using the Model Context Protocol.",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.27.1",
     "axios": "^1.13.6",

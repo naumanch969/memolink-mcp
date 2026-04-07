@@ -3,7 +3,7 @@ import { BaseTool } from "../../core/base-tool.js";
 
 export class CreateMemoTool extends BaseTool<any> {
     name = "create_memo";
-    description = "Creates a new personalized journal entry or memo in Memolink. Always use this to save facts, reflections, or context about the user's life.";
+    description = "Creates a new personalized journal entry or memo in Brinn. Always use this to save facts, reflections, or context about the user's life.";
     readOnlyHint = false;
     destructiveHint = false;
 

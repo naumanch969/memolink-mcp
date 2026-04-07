@@ -3,7 +3,7 @@ import { BaseTool } from "../../core/base-tool.js";
 
 export class CreateGoalTool extends BaseTool<any> {
     name = "create_goal";
-    description = "Creates a new goal for the user to track in Memolink.";
+    description = "Creates a new goal for the user to track in Brinn.";
     readOnlyHint = false;
     destructiveHint = false;
 

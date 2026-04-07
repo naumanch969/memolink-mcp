@@ -1,6 +1,6 @@
-# Memolink MCP Server
+# Brinn MCP Server
 
-A [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server that connects your AI assistants (Claude, Cursor, Windsurf, etc.) with your **Memolink** workspace. This integration allows AI agents to read, search, and manage your research notes, memos, and goals directly.
+A [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server that connects your AI assistants (Claude, Cursor, Windsurf, etc.) with your **Brinn** workspace. This integration allows AI agents to read, search, and manage your research notes, memos, and goals directly.
 
 ## ✨ Features
 
@@ -11,10 +11,10 @@ A [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server that co
 
 ## Quick Setup
 
-Connect Memolink to your favorite AI assistant in seconds using the built-in setup CLI:
+Connect Brinn to your favorite AI assistant in seconds using the built-in setup CLI:
 
 ```bash
-npx memolink-mcp setup <provider> <MEMOLINK_API_KEY>
+npx brinn-mcp setup <provider> <BRINN_API_KEY>
 ```
 
 ### Supported Providers:
@@ -28,7 +28,7 @@ npx memolink-mcp setup <provider> <MEMOLINK_API_KEY>
 
 ### 🔐 OAuth & Official AI Integration
 
-If you are using the official Claude.ai or Cursor integration, the following redirect URIs must be allowlisted in your Memolink server settings (or configured via `npm run mcp-setup` on the server):
+If you are using the official Claude.ai or Cursor integration, the following redirect URIs must be allowlisted in your Brinn server settings (or configured via `npm run mcp-setup` on the server):
 
 - `http://localhost:6274/oauth/callback`
 - `http://localhost:6274/oauth/callback/debug`
@@ -36,17 +36,17 @@ If you are using the official Claude.ai or Cursor integration, the following red
 - `https://claude.com/api/mcp/auth_callback`
 
 > [!IMPORTANT]
-> Your Memolink API Key must start with `mclk_`. You can find this in your Memolink settings.
+> Your Brinn API Key must start with `mclk_`. You can find this in your Brinn settings.
 
 ## 🌥️ Cloudflare Workers Deployment
 
-You can deploy Memolink MCP as a serverless Cloudflare Worker to provide a persistent, multi-tenant SSE (Server-Sent Events) endpoint for your AI assistants.
+You can deploy Brinn MCP as a serverless Cloudflare Worker to provide a persistent, multi-tenant SSE (Server-Sent Events) endpoint for your AI assistants.
 
 ### Quick Deploy:
 1. Clone the repository and install dependencies:
    ```bash
-   git clone https://github.com/Opstin-Technologies/memolink-mcp.git
-   cd memolink-mcp
+   git clone https://github.com/Opstin-Technologies/brinn-mcp.git
+   cd brinn-mcp
    npm install
    ```
 2. Build and deploy to your Cloudflare account:
@@ -56,14 +56,14 @@ You can deploy Memolink MCP as a serverless Cloudflare Worker to provide a persi
 
 ### Setup on Cloudflare:
 Once deployed, configure the environment variable:
-- `MEMOLINK_API_URL`: `https://your-memolink-api.com/api` (Optional).
+- `BRINN_API_URL`: `https://your-brinn-api.com/api` (Optional).
 
 ### Connecting to SSE:
 The worker provides an MCP-compliant SSE endpoint at:
-`https://memolink-mcp.<your-subdomain>.workers.dev/mcp/sse`
+`https://brinn-mcp.<your-subdomain>.workers.dev/mcp/sse`
 
 **Authentication:** 
-The SSE endpoint requires your Memolink API Key. You can provide it in two ways:
+The SSE endpoint requires your Brinn API Key. You can provide it in two ways:
 1. **Authorization Header:** `Bearer mclk_SECRET`
 2. **Query Parameter:** `?apiKey=mclk_SECRET`
 
@@ -72,8 +72,8 @@ The SSE endpoint requires your Memolink API Key. You can provide it in two ways:
 ```json
 {
   "mcpServers": {
-    "memolink-cloud": {
-      "url": "https://memolink-mcp.your-subdomain.workers.dev/mcp/sse?apiKey=mclk_your_secret_key"
+    "brinn-cloud": {
+      "url": "https://brinn-mcp.your-subdomain.workers.dev/mcp/sse?apiKey=mclk_your_secret_key"
     }
   }
 }
@@ -104,20 +104,20 @@ The following tools are exposed to your AI assistant:
 
 If you prefer to configure your environment manually, ensure the following environment variables are set:
 
-- `MEMOLINK_API_KEY`: Your private Memolink API Key.
-- `MEMOLINK_API_URL`: (Optional) Defaults to `https://api.memo.opstintechnologies.com/api`.
+- `BRINN_API_KEY`: Your private Brinn API Key.
+- `BRINN_API_URL`: (Optional) Defaults to `https://api.memo.opstintechnologies.com/api`.
 
 ### Example for `claude_desktop_config.json`:
 
 ```json
 {
   "mcpServers": {
-    "memolink": {
+    "brinn": {
       "command": "npx",
-      "args": ["-y", "memolink-mcp"],
+      "args": ["-y", "brinn-mcp"],
       "env": {
-        "MEMOLINK_API_KEY": "mclk_your_secret_key",
-        "MEMOLINK_API_URL": "https://api.memo.opstintechnologies.com/api"
+        "BRINN_API_KEY": "mclk_your_secret_key",
+        "BRINN_API_URL": "https://api.memo.opstintechnologies.com/api"
       }
     }
   }
@@ -140,14 +140,14 @@ If you prefer to configure your environment manually, ensure the following envir
 
 ## 🔒 Privacy & Security
 
-Memolink MCP acts as a bridge between your AI assistant and your private Memolink workspace. 
-- **Data Ownership**: Your notes and data remain exclusively on Memolink servers. 
+Brinn MCP acts as a bridge between your AI assistant and your private Brinn workspace. 
+- **Data Ownership**: Your notes and data remain exclusively on Brinn servers. 
 - **Encryption**: All communication is performed over HTTPS.
 - **Privacy Policy**: View our full privacy policy at [https://memo.opstintechnologies.com/privacy/mcp](https://memo.opstintechnologies.com/privacy/mcp).
 
 ## 🆘 Support & Community
 
-- **GitHub Issues**: Report bugs or request features on our [Issue Tracker](https://github.com/Opstin-Technologies/memolink-mcp/issues).
+- **GitHub Issues**: Report bugs or request features on our [Issue Tracker](https://github.com/Opstin-Technologies/brinn-mcp/issues).
 - **Email Support**: Contact us at `support@opstintechnologies.com`.
 - **Website**: [https://opstintechnologies.com](https://opstintechnologies.com).
 

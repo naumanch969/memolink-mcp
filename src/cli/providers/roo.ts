@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
 import { ProviderConfig } from '../provider.interface.js';
-import { getMemolinkMcpConfig } from '../../core/constants.js';
+import { getBrinnMcpConfig } from '../../core/constants.js';
 import { updateMcpConfig } from '../setup-helper.js';
 
 const ROO_MCP_CONFIGS = [
@@ -26,7 +26,7 @@ const ROO_MCP_CONFIGS = [
 
 export const vscodeRooProvider: ProviderConfig = {
     name: 'roo',
-    description: 'Installs Memolink inside Roo Code / Cline extensions in VS Code.',
+    description: 'Installs Brinn inside Roo Code / Cline extensions in VS Code.',
     async setup(apiKey: string) {
         const platform = os.platform() as 'darwin' | 'win32' | 'linux';
         let configPath = '';
@@ -47,9 +47,9 @@ export const vscodeRooProvider: ProviderConfig = {
             foundApp = ROO_MCP_CONFIGS[0].name;
         }
 
-        updateMcpConfig(configPath, 'memolink', getMemolinkMcpConfig(apiKey));
+        updateMcpConfig(configPath, 'brinn', getBrinnMcpConfig(apiKey));
 
-        console.error(`✅ Successfully connected Memolink to VS Code (${foundApp})!`);
+        console.error(`✅ Successfully connected Brinn to VS Code (${foundApp})!`);
         console.error(`📂 Config updated at: ${configPath}`);
         console.error(`\n🔄 Restart your VS Code window to apply the MCP extension.`);
     }

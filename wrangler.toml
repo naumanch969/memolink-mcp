@@ -1,9 +1,9 @@
-name = "memolink-mcp"
+name = "brinn-mcp"
 main = "src/worker.ts"
 compatibility_date = "2024-11-20"
 
 [vars]
-MEMOLINK_API_URL = "https://api.memo.opstintechnologies.com/api" # User should specify their URL if different
+BRINN_API_URL = "https://api.memo.opstintechnologies.com/api" # User should specify their URL if different
 
 [observability]
 enabled = true

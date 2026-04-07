@@ -1,17 +1,17 @@
-import { MEMOLINK_API_URL } from '../core/constants.js';
+import { BRINN_API_URL } from '../core/constants.js';
 
-export class MemolinkClient {
+export class BrinnClient {
     private apiKey: string;
     private baseUrl: string;
 
     constructor(apiKey?: string, apiUrl?: string) {
         // Workers don't have process.env globally, they use bindings
         // But for local CLI it might still use it
-        const API_KEY = apiKey || (typeof process !== 'undefined' ? process.env.MEMOLINK_API_KEY : '');
-        const API_URL = apiUrl || (typeof process !== 'undefined' ? process.env.MEMOLINK_API_URL : MEMOLINK_API_URL);
+        const API_KEY = apiKey || (typeof process !== 'undefined' ? process.env.BRINN_API_KEY : '');
+        const API_URL = apiUrl || (typeof process !== 'undefined' ? process.env.BRINN_API_URL : BRINN_API_URL);
 
         if (!API_KEY && typeof process !== 'undefined' && process.argv && process.argv[2] !== "setup") {
-            console.error("MEMOLINK_API_KEY is required.");
+            console.error("BRINN_API_KEY is required.");
         }
 
         this.apiKey = API_KEY || '';
@@ -38,7 +38,7 @@ export class MemolinkClient {
 
         // Return empty object for empty responses (like 204 No Content)
         if (response.status === 204) {
-             return {} as T;
+            return {} as T;
         }
 
         return await response.json() as T;
