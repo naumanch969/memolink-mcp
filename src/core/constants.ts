@@ -1,4 +1,4 @@
-export const BRINN_API_URL = "https://api.memo.opstintechnologies.com/api";
+export const BRINN_API_URL = "https://api.brinn.app/api";
 export const BRINN_NPX_COMMAND = "npx";
 export const BRINN_NPX_ARGS = ["-y", "brinn-mcp"];
 

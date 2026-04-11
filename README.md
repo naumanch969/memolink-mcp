@@ -105,7 +105,7 @@ The following tools are exposed to your AI assistant:
 If you prefer to configure your environment manually, ensure the following environment variables are set:
 
 - `BRINN_API_KEY`: Your private Brinn API Key.
-- `BRINN_API_URL`: (Optional) Defaults to `https://api.memo.opstintechnologies.com/api`.
+- `BRINN_API_URL`: (Optional) Defaults to `https://api.brinn.app/api`.
 
 ### Example for `claude_desktop_config.json`:
 
@@ -117,7 +117,7 @@ If you prefer to configure your environment manually, ensure the following envir
       "args": ["-y", "brinn-mcp"],
       "env": {
         "BRINN_API_KEY": "mclk_your_secret_key",
-        "BRINN_API_URL": "https://api.memo.opstintechnologies.com/api"
+        "BRINN_API_URL": "https://api.brinn.app/api"
       }
     }
   }
@@ -148,7 +148,7 @@ Brinn MCP acts as a bridge between your AI assistant and your private Brinn work
 ## 🆘 Support & Community
 
 - **GitHub Issues**: Report bugs or request features on our [Issue Tracker](https://github.com/Opstin-Technologies/brinn-mcp/issues).
-- **Email Support**: Contact us at `support@opstintechnologies.com`.
+- **Email Support**: Contact us at `support.brinn@opstintechnologies.com`.
 - **Website**: [https://opstintechnologies.com](https://opstintechnologies.com).
 
 ## 🛠️ Development

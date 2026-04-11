@@ -27,7 +27,7 @@
     "journaling",
     "ai-memory"
   ],
-  "author": "Opstin Technologies <support@opstintechnologies.com>",
+  "author": "Opstin Technologies <support.brinn@opstintechnologies.com>",
   "license": "ISC",
   "description": "Connect your AI with Brinn to manage research notes, memories, and goals using the Model Context Protocol.",
   "dependencies": {
